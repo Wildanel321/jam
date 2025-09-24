@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Harian Siswa</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Mengatur tampilan dasar halaman */
+        body {
+            /* Latar belakang gradasi yang keren */
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            font-family: 'Poppins', sans-serif; /* Font modern */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        /* Kontainer utama yang terlihat seperti kartu */
+        .card-container {
+            background-color: rgba(255, 255, 255, 0.95); /* Warna putih sedikit transparan */
+            padding: 25px 35px;
+            border-radius: 20px; /* Sudut melengkung */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Efek bayangan agar terlihat 'mengambang' */
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            border-top: 5px solid #6a11cb;
+        }
+
+        /* Judul Kartu */
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+        
+        /* Baris 1: Teks berjalan warna BIRU */
+        .welcome-text {
+            color: #0056b3; /* Biru */
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 10px;
+            background: #e7f5ff;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        /* Baris 2: Teks berjalan warna HIJAU */
+        .class-identity {
+            color: #155724; /* Hijau */
+            font-size: 1.1rem;
+            padding: 10px;
+            background: #d4edda;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        /* Baris 3: Teks diam warna MERAH */
+        .student-name {
+            color: #721c24; /* Merah */
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 10px;
+            background: #f8d7da;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        /* Baris 4: Info Tanggal */
+        .date-display {
+            font-size: 1.1rem;
+            background: #fff3cd;
+            color: #856404;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        /* Baris 5: Jam Realtime */
+        .clock-display {
+            font-family: 'Orbitron', sans-serif; /* Font digital untuk jam */
+            font-size: 3rem;
+            color: #fff;
+            background-color: #333;
+            padding: 15px;
+            border-radius: 10px;
+            letter-spacing: 3px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <h1>✨ Informasi Tugas Harian ✨</h1>
+
+        <div class="welcome-text">
+            <marquee behavior="scroll" direction="left" scrolldelay="80">
+                Selamat datang di SMA Negeri 1 Cluring
+            </marquee>
+        </div>
+
+        <div class="class-identity">
+            <marquee behavior="scroll" direction="right" scrolldelay="80">
+                Kelas XII 2 | Tugas Pemrograman Web
+            </marquee>
+        </div>
+
+        <div class="student-name">
+            Nama Lengkap: Wildan nur Awaludin
+        </div>
+
+        <div id="tanggal" class="date-display">
+            Memuat tanggal...
+        </div>
+
+        <div id="jam" class="clock-display">
+            00:00:00
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk menambahkan '0' di depan angka tunggal (misal: 7 jadi 07)
+        function padZero(num) {
+            return num < 10 ? '0' + num : num;
+        }
+
+        // Fungsi untuk menampilkan tanggal
+        function tampilkanTanggal() {
+            const sekarang = new Date();
+            const namaHari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            const namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            
+            const hari = namaHari[sekarang.getDay()];
+            const tanggal = sekarang.getDate();
+            const bulan = namaBulan[sekarang.getMonth()];
+            const tahun = sekarang.getFullYear();
+
+            const formatTanggal = `${hari}, ${tanggal} ${bulan} ${tahun}`;
+            document.getElementById('tanggal').innerHTML = `🗓️ &nbsp; ${formatTanggal}`;
+        }
+
+        // Fungsi untuk menampilkan jam
+        function tampilkanJam() {
+            const sekarang = new Date();
+            const jam = padZero(sekarang.getHours());
+            const menit = padZero(sekarang.getMinutes());
+            const detik = padZero(sekarang.getSeconds());
+            
+            const formatJam = `${jam}:${menit}:${detik}`;
+            document.getElementById('jam').textContent = formatJam;
+        }
+
+        // Jalankan fungsi saat halaman pertama kali dimuat
+        tampilkanTanggal();
+        tampilkanJam();
+
+        // Atur agar jam diperbarui setiap detik
+        setInterval(tampilkanJam, 1000);
+    </script>
+
+</body>
+</html>
