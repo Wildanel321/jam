@@ -20,4 +20,3 @@ Ini adalah program web sederhana yang dibuat dengan HTML, CSS, dan JavaScript un
 5.  Ubah bagian `[Nama Lengkap Anda]` dan `[Nama Kelas Anda]` pada kode agar sesuai dengan identitas Anda.
 
 ---
-Apakah Anda ingin menambahkan bagian lain, seperti informasi tentang siapa pembuat program ini atau lisensinya?
